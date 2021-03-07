@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,19 +13,5 @@ public class HighScores
 
     public int PersonalBest() => l.Max();
 
-    public List<int> PersonalTopThree()
-    {
-        List<int> top3 = new List<int>();
-        List<int> tempL = new List<int>();
-        tempL.AddRange(l);
-        int count = 3;
-        if (tempL.Count < 3) count = tempL.Count();
-
-        for (int i = 0; i < count; i++)
-        {
-            top3.Add(tempL.Max());
-            tempL.Remove(tempL.Max());
-        }
-        return top3;
-    }
+    public List<int> PersonalTopThree() => l.OrderByDescending(i => i).Take(3).ToList();
 }
